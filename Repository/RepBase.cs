@@ -13,7 +13,7 @@ namespace Repository
     {
         ContextoEF context = new ContextoEF();
 
-        public void Adicionar(TEntity obj)
+        public void Salvar(TEntity obj)
         {
             context.Set<TEntity>().Add(obj);
             context.SaveChanges();

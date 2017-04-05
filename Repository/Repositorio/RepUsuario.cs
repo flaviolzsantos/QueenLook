@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Repository.Repositorio
 {
-    public class Usuario : BaseModelo
+    public class RepUsuario : RepBase<Usuario>
     {
-        public string  Nome { get; set; }
 
     }
 }

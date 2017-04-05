@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Context
 {
+    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ContextoEF : DbContext
     {
-        public ContextoEF() : base(ConfigurationManager.ConnectionStrings["adm"].ConnectionString.ToString())
+        public ContextoEF() : base("Contexto")
         {
 
         }

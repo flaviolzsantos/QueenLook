@@ -8,7 +8,7 @@ namespace Domain
 {
     public interface IRepositoryBase<T> where T : class
     {
-        void Adicionar(T obj);        
+        void Salvar(T obj);        
         void Atualizar(T obj);
         void Deletar(T obj);
         T ObterPor(int id);
