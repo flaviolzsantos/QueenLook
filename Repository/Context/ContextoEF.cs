@@ -19,7 +19,11 @@ namespace Repository.Context
 
         }
 
-        public DbSet<Usuario> Produtos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        #region Webui
+        public DbSet<FotoSuperior> FotoSuperior { get; set; }
+        #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,7 +39,7 @@ namespace Repository.Context
                 .Configure(p => p.HasColumnType("varchar"));
 
             modelBuilder.Properties<string>()
-                .Configure(p => p.HasMaxLength(100));
+                .Configure(p => p.HasMaxLength(300));
 
             modelBuilder.Configurations.Add(new UsuarioConfig());
         }

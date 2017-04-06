@@ -2,7 +2,7 @@
 
 namespace Repository.Repositorio
 {
-    public class RepUsuario : RepBase<Usuario>
+    public class RepFoto<T> : RepBase<T> where T : class
     {
 
     }
