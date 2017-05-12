@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import Works from './components/RecentWorks';
-import './App.css';
+import React from 'react'
+import NavLink from './components/NavLink'
 
-class App extends Component {
+class App extends React.Component{
   render() {
     return (
-        <div className="App">
-        <div className="App-menu"></div>
-        <div className="App-recentWorks">
-          <Works />
-        </div>
+      <div>
+       <Header/>
+        <ul role="nav">
+          <li><NavLink to="/" onlyActiveOnIndex>Dashboard</NavLink></li>
+        </ul>
+        {this.props.children}
+       <Footer/>        
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
