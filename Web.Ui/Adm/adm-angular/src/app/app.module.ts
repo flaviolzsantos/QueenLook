@@ -23,4 +23,7 @@ import { HomeService } from "app/home/home.service";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    
+
+ }

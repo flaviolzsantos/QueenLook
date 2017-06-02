@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Type } from '@angular/core';
 
 @Component({
   selector: 'app-editor-imagem',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./editor-imagem.component.css']
 })
 export class EditorImagemComponent  {
-
+  
+  
+  
 }
