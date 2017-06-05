@@ -8,6 +8,7 @@ import { EditorImagemComponent } from './editor-imagem/editor-imagem.component';
 import { HomeModule } from "app/home/home.module";
 import { HomeService } from "app/service/home.service";
 
+
 @NgModule({
   declarations: [
     AppComponent
