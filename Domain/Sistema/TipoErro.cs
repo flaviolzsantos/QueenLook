@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class BaseModelo
+    public enum TipoErro
     {
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        Ajax = 1,
+        Global = 2
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Routing;
+using WepApiUi.App_Start;
 
 namespace WepApiUi
 {
@@ -16,9 +18,25 @@ namespace WepApiUi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "Areas/{area}/{controller}/{id}",
+                routeTemplate: "Areas/{id}/{controller}/{action}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //config.Routes.MapHttpRoute(
+            //   name: "Api_Get",
+            //   routeTemplate: "{controller}/{id}/{action}",
+            //   defaults: new { id = RouteParameter.Optional, action = "Get" },
+            //   constraints: new { httpMethod = new HttpMethodConstraint("GET") }
+            //);
+
+            //config.Routes.MapHttpRoute(
+            //   name: "Api_Post",
+            //   routeTemplate: "{controller}/{id}/{action}",
+            //   defaults: new { id = RouteParameter.Optional, action = "Post" },
+            //   constraints: new { httpMethod = new HttpMethodConstraint("POST") }
+            //);
+
+            config.Filters.Add(new CustomExceptionFilter());
         }
     }
 }

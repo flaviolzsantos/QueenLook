@@ -20,6 +20,12 @@ namespace Repository
 
         }
 
+        public ContextoEF GetContext()
+        {
+            context.Set<TEntity>();
+            return context;
+        }
+
         public void Atualizar(TEntity obj)
         {
             context.Entry(obj).State = EntityState.Modified;
@@ -39,7 +45,9 @@ namespace Repository
 
         public IList<TEntity> ObterTodos()
         {
-            return null;
+            throw new NotImplementedException();
         }
+
+        
     }
 }

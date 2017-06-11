@@ -6,6 +6,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Util.Exceptions;
+using Domain;
+using Service.Sistema;
+using WepApiUi.App_Start;
 
 namespace WepApiUi
 {
@@ -18,5 +22,8 @@ namespace WepApiUi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
     }
+
 }
+

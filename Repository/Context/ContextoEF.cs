@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Repository.Context
 {
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    public class ContextoEF : DbContext
+    public partial class ContextoEF : DbContext
     {
         public ContextoEF() : base("Contexto")
         {
@@ -23,6 +23,12 @@ namespace Repository.Context
 
         #region Webui
         public DbSet<FotoSuperior> FotoSuperior { get; set; }
+        public DbSet<Home> Homes { get; set; }
+        #endregion
+
+        #region Sistema
+        public DbSet<Rastro> Rastros { get; set; }
+        public DbSet<Erro> Erros { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -42,6 +48,7 @@ namespace Repository.Context
                 .Configure(p => p.HasMaxLength(300));
 
             modelBuilder.Configurations.Add(new UsuarioConfig());
+            modelBuilder.Configurations.Add(new ErroConfig());
         }
     }
 

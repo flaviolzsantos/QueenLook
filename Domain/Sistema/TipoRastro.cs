@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class BaseModelo
+    public enum TipoRastro
     {
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        Update = 1,
+        Delete = 2
     }
 }

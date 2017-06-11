@@ -20,3 +20,6 @@ namespace Repository.Migrations
         }
     }
 }
+//Add-Migration init
+//Update-Database -verbose
+//

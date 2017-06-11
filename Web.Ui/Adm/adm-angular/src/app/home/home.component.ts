@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+﻿import { Component, OnInit, Input  } from '@angular/core';
 import { HomeService } from "app/service/home.service";
 import { Home } from "app/model/home.model";
 
@@ -11,16 +11,27 @@ export class HomeComponent implements OnInit {
   modelo : Home;
   homeSrv : HomeService;
 
-  especialidades : string[];
+  listaValores : any;
   @Input() testeInput : string;
   constructor(homeService : HomeService) {
-    this.especialidades = homeService.getEspecialidade();
+    //this.especialidades = homeService.getEspecialidade();
     this.modelo = new Home();
     this.homeSrv = homeService;
+    this.ListaValores();
    }
 
    public cadastrar(){
-    this.homeSrv.CadastrarInfo(this.modelo);
+       this.homeSrv.CadastrarInfo(this.modelo);
+       this.ListaValores();
+   }
+
+   public DeletarHome(id) {
+       this.homeSrv.DeletarHome(id);
+       this.ListaValores();
+   }
+
+   public ListaValores() {
+       this.listaValores = this.homeSrv.GetInfo();
    }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-
+﻿
 Teste de input : {{testeInput}}
 <div class="row">
     <div class="col-lg-4 col-md-4">
@@ -31,21 +31,37 @@ Teste de input : {{testeInput}}
             <thead>
                 <tr>
                     <th width="40%">Título</th>
-                    <th width="40%">Texto</th>
+                    <th width="40%">Conteúdo</th>
+                    <th>Ativo</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr id="relatorio_" *ngFor= "let especialidade of especialidades">                    
-                    <td>{{especialidade}}</td>
-                    <td></td>
+                <tr id="{{valor.Id}}" *ngFor= "let valor of listaValores">                    
+                    <td>{{valor.Titulo}}</td>
+                    <td>{{valor.Conteudo}}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <a href="javascript:void(0);">
+                          <i class="fa fa-check" aria-hidden="true" [style.visibility]="(valor.Ativo) ? 'visible' : 'hidden' "></i>
+                        </a>
+                      </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">                            
-                            <a href="javascript:void(0);">
+                            <a href="javascript:void(0);" (click)="DeletarHome(valor.Id)"> 
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
                         </div>
                     </td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <a href="javascript:void(0);">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </td>
                 </tr>
             </tbody>
         </table>

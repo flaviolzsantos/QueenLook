@@ -35,8 +35,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModelo.cs" />
+    <Compile Include="IRastreavel.cs" />
     <Compile Include="IRepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistema\Erro.cs" />
+    <Compile Include="Sistema\Rastro.cs" />
+    <Compile Include="Sistema\TipoErro.cs" />
+    <Compile Include="Sistema\TipoRastro.cs" />
     <Compile Include="Ui\BaseFoto.cs" />
     <Compile Include="Ui\FotoSuperior.cs" />
     <Compile Include="Ui\Home.cs" />
