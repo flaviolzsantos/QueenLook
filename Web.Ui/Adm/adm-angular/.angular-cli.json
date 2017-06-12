@@ -1,7 +1,7 @@
-{
+﻿{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "adm-angular"
+    "name": "QueenLook"
   },
   "apps": [
     {
@@ -21,10 +21,8 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/font-awesome/css/font-awesome.css"
-      ],
-      "scripts": [
-        "app/assets/js/croppic.js"
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
