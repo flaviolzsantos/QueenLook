@@ -1,51 +1,71 @@
-﻿import { Component, OnInit, Input, ViewContainerRef  } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { HomeService } from "app/service/home.service";
 import { Home } from "app/model/home.model";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  modelo : Home;
-  homeSrv: HomeService;
-    
+    modelo: Home;
+    homeSrv: HomeService;
 
-  listaValores : any;
-  @Input() testeInput : string;
-  constructor(homeService: HomeService, public toastr: ToastsManager, vcr: ViewContainerRef) {
-    //this.especialidades = homeService.getEspecialidade();
-      this.toastr.setRootViewContainerRef(vcr);
-      this.modelo = new Home();
-      this.homeSrv = homeService;
-      this.ListaValores();
 
-      
-   }
+    listaValores: any;
+    @Input() testeInput: string;
+    constructor(homeService: HomeService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        
+        this.toastr.setRootViewContainerRef(vcr);
 
-   public cadastrar(){
-       this.homeSrv.CadastrarInfo(this.modelo);
-       this.ListaValores();
-       this.showSuccess();
-   }
+        this.modelo = new Home();
+        this.homeSrv = homeService;
+    }
 
-   public DeletarHome(id) {
-       this.homeSrv.DeletarHome(id);
-       this.ListaValores();
-   }
+    public cadastrar() {
 
-   public ListaValores() {
-       this.listaValores = this.homeSrv.GetInfo();
-       this.showSuccess();
-   }
+        this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
+        this.ListaValores();
+        this.modelo.Titulo = "";
+        this.modelo.Conteudo = "";
+        this.modelo.Id = 0;
+    }
 
-   showSuccess() {
-       this.toastr.success('Cadastrado com sucesso', 'Successo!', { 'position-class': 'toast-top-full-width'});
-   }
+    public DeletarHome(id) {
+        if (confirm("Tem certeza que deseja excluir esse item?")) {
+            this.mostrarMensagem(this.homeSrv.DeletarHome(id), "Deletado com sucesso!");
+            this.ListaValores();
+        }
+    }
 
-  ngOnInit() {
-  }
+    public ListaValores() {
+        this.listaValores = this.homeSrv.GetInfo();
+        
+    }
+
+    public AtivarOuDesativatItem(id) {        
+        var metodoRetorno = this.homeSrv.AtivarOuDeletar(id);
+
+        if (metodoRetorno.status == 500) 
+            this.toastr.error(metodoRetorno.responseJSON.ExceptionMessage);       
+
+        this.ListaValores();
+    }
+
+    public EditarItem(valor) {
+        this.modelo = valor;
+    }
+
+
+    mostrarMensagem(metodoRetorno: any, mensagem: string) {
+        if (metodoRetorno.status == 500) {
+            this.toastr.error(metodoRetorno.responseJSON.ExceptionMessage);
+        } else {
+            this.toastr.success(mensagem);
+        }
+    }
+    ngOnInit() {
+        this.ListaValores();
+    }
 
 }

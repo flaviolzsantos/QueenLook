@@ -11,5 +11,10 @@ namespace Domain
         public string Titulo { get; set; }
         public string Conteudo { get; set; }
         public bool Ativo { get; set; } = true;
+
+        public void AtivarOuDesativar()
+        {
+            Ativo = !Ativo;
+        }
     }
 }

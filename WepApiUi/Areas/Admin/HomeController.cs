@@ -26,12 +26,17 @@ namespace WepApiUi.Areas.Admin
         {
             return new SrvHome().ObterListaHome();
         }
-
        
         [HttpPost]
         public void Deletar([FromBody]int id)
         {            
             new SrvHome().DeletarHome(id);
+        }
+
+        [HttpPost]
+        public void AtivarOuDesativar([FromBody] int id)
+        {
+            new SrvHome().AtivarOuDesativar(id);
         }
     }
 }

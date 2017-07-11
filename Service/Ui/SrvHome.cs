@@ -20,10 +20,13 @@ namespace Service.Ui
 
         public void SalvarHome(Home home)
         {
-            if (_repHome.ExisteTresConteudosAtivos())
-                throw new RegraNegocioException("Já existe 3 conteúdos cadastrados ativos, desative algum para prosseguir");
-
-            _repHome.Salvar(home);
+            if (home.Id > 0)
+                _repHome.Atualizar(home);
+            else
+            {
+                ValidarConteudoAtivo();
+                _repHome.Salvar(home);
+            }
         }
 
         public Home[] ObterListaHome()
@@ -36,7 +39,24 @@ namespace Service.Ui
             Home home = _repHome.ObterPor(id);
             _repHome.Deletar(home);
         }
-        
-                
+
+        public void AtivarOuDesativar(int id)
+        {
+            Home home = _repHome.ObterPor(id);
+
+            if (!home.Ativo)
+                ValidarConteudoAtivo();
+
+            home.AtivarOuDesativar();
+            _repHome.Atualizar(home);
+        }
+
+        private void ValidarConteudoAtivo()
+        {
+            if (_repHome.ExisteTresConteudosAtivos())
+                throw new RegraNegocioException("Já existe 3 conteúdos cadastrados ativos, desative algum para prosseguir");
+        }
+
+
     }
 }

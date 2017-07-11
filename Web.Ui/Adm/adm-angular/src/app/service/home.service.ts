@@ -2,51 +2,36 @@
 import { Home } from "app/model/home.model";
 import { Http, Headers, RequestOptions } from "@angular/http";
 import * as $ from 'jquery';
+import { HttpInterceptor } from "app/HttpInterceptor";
 
 @Injectable()
 export class HomeService {
-  
-    constructor(private http : Http) {
+
+    
+    
+    constructor(public http: HttpInterceptor) {
     
     }
 
     getEspecialidade(){
-      return ['Sombrancelhas', 'estética', 'Cabelereiro'];
+        return ['Sombrancelhas', 'estética', 'Cabelereiro'];        
     }
 
-    CadastrarInfo(modelo : Home){
     
-        $.ajax(
-        {
-            type: "POST",
-            url: "http://localhost:1234/Areas/Admin/Home/CadastrarHome",
-            data: modelo,
-            dataType: "json",
-            async: false
-        });    
+    CadastrarInfo(modelo: Home) {
+        return this.http.post("Areas/Admin/Home/CadastrarHome", modelo);
     }
 
     GetInfo() {
-
-        var retorno = $.ajax(
-            {
-                type: "GET",
-                url: "http://localhost:1234/Areas/Admin/Home/ObterListaHome",
-                dataType: "json",
-                async: false
-            });
-        return retorno.responseJSON;
+        return this.http.get('Areas/Admin/Home/ObterListaHome');       
     }
 
-    DeletarHome(id) {
-        $.ajax(
-            {
-                type: "POST",
-                url: "http://localhost:1234/Areas/Admin/Home/Deletar",
-                data: { "": id },
-                dataType: "json",
-                async: false
-            }); 
+    DeletarHome(id) {        
+        return this.http.post('/Areas/Admin/Home/Deletar', { "" : id });
+    }
+
+    AtivarOuDeletar(id) {
+        return this.http.post('/Areas/Admin/Home/AtivarOuDesativar', { "": id });
     }
 
 }
