@@ -20,7 +20,10 @@ namespace Service.Ui
 
         public void SalvarHome(Home home)
         {
-            if (home.Id > 0)
+            if (home.Titulo == "" || home.Titulo == null)
+                throw new RegraNegocioException("Titulo é obrigatório");
+
+                if (home.Id > 0)
                 _repHome.Atualizar(home);
             else
             {
@@ -51,11 +54,18 @@ namespace Service.Ui
             _repHome.Atualizar(home);
         }
 
+        public object ObterHomeUi()
+        {
+            return _repHome.ObterListaHomeUi();
+        }
+
+        #region Metodos de suporte
         private void ValidarConteudoAtivo()
         {
             if (_repHome.ExisteTresConteudosAtivos())
                 throw new RegraNegocioException("Já existe 3 conteúdos cadastrados ativos, desative algum para prosseguir");
         }
+        #endregion
 
 
     }

@@ -34,4 +34,25 @@ export class HomeService {
         return this.http.post('/Areas/Admin/Home/AtivarOuDesativar', { "": id });
     }
 
+    postWithFile( files: File[]) {
+
+        let headers = new Headers();
+        let formData: FormData = new FormData();
+        formData.append('files', files[0], files[0].name);
+
+        $.ajax({
+            url: 'http://localhost:1234/Areas/Admin/Home/UploadFile',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                console.log(data);
+                alert(data);
+            }
+        });
+
+        
+    }
+
 }

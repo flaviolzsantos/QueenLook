@@ -1139,6 +1139,9 @@
     <script type='text/javascript' src='js/wp-embed.min.js'></script>
     <script type='text/javascript' src='js/jquery.cycle.all.min.js'></script>
     <script type='text/javascript' src='js/rotating_tweet.js'></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/Scripts/ServiceUtil.js"></script>
+    <script src="js/Scripts/Servico.js"></script>
     <script type="text/javascript">
         (function ($) {
             "use strict";
@@ -1149,6 +1152,17 @@
                     effect: 'fade'
                 });
 
+                var listaHome = [];
+
+                jQuery.each(getHome(), function (key, value) {
+                    var titulo = (value.Conteudo != undefined) ? '<h2>' + value.Titulo + ' &amp; ' + value.Conteudo + '</h2>' : '<h2>' + value.Titulo + '</h2>'
+                    listaHome.push({
+                        image: 'images/backgroud/imgGrande.jpeg',
+                        title: titulo
+                    });
+                });
+                
+
                 $.supersized({
 
                     // Functionality
@@ -1158,27 +1172,7 @@
 
                     // Components							
                     slide_links: 'false', // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-                    slides: [ // Slideshow Images
-
-                        {
-                            image: 'images/backgroud/imgGrande.jpeg',
-                            title: '<h2>Especialistas Sombrancelhas &amp; cílios</h2>'
-                        },
-                        {
-                            image: 'images/backgroud/imgGrande.jpeg',
-                            title: '<h2>Especialistas Sombrancelhas &amp; cílios2</h2>'
-                        }
-                        /*, {
-                            image: 'images/backgroud/imgGrande2.jpg',
-                            title: '<h2>Comunicado 2</h2>'
-                        }, {
-                            image: 'images/backgroud/imgGrande3.jpg',
-                            title: '<h2>Comunicado &amp; descrição das coisas</h2>'
-                        }, {
-                            image: 'http://theme.ridianur.com/alamak/wp-content/uploads/2013/12/slider4.jpg',
-                            title: '<h2>Bunch of Creative People &amp; Idea</h2>'
-                        },*/
-                    ]
+                    slides: listaHome
 
                 });
             });

@@ -19,5 +19,10 @@ namespace Repository.Repositorio
         {
             return (from x in GetContext().Homes select x).ToArray();
         }
+
+        public object ObterListaHomeUi()
+        {
+            return (from x in GetContext().Homes where x.Ativo select new { x.Titulo, x.Conteudo});
+        }
     }
 }

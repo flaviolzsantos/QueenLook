@@ -2,6 +2,8 @@
 import { HomeService } from "app/service/home.service";
 import { Home } from "app/model/home.model";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import * as $ from 'jquery';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -23,12 +25,12 @@ export class HomeComponent implements OnInit {
     }
 
     public cadastrar() {
-
-        this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
-        this.ListaValores();
-        this.modelo.Titulo = "";
-        this.modelo.Conteudo = "";
-        this.modelo.Id = 0;
+        this.enviarImagem();
+        //this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
+        //this.ListaValores();
+        //this.modelo.Titulo = "";
+        //this.modelo.Conteudo = "";
+        //this.modelo.Id = 0;
     }
 
     public DeletarHome(id) {
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
 
     public ListaValores() {
         this.listaValores = this.homeSrv.GetInfo();
-        
+
     }
 
     public AtivarOuDesativatItem(id) {        
@@ -64,6 +66,20 @@ export class HomeComponent implements OnInit {
             this.toastr.success(mensagem);
         }
     }
+
+    enviarImagem() {
+
+       
+
+    }
+
+    onChange(event) {
+        let file = event.srcElement.files;
+        this.homeSrv.postWithFile(file);
+    }
+
+
+
     ngOnInit() {
         this.ListaValores();
     }

@@ -167,6 +167,7 @@
     <Compile Include="Areas\Admin\HomeController.cs" />
     <Compile Include="Areas\Admin\LoginController.cs" />
     <Compile Include="Areas\Ui\FotoController.cs" />
+    <Compile Include="Areas\Ui\HomeUiController.cs" />
     <Compile Include="Areas\Ui\LoginUiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

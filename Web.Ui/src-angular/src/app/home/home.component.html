@@ -13,9 +13,15 @@ Teste de input : {{testeInput}}
             <input [(value)]="modelo.Conteudo" (input)="modelo.Conteudo = $event.target.value" class="form-control" />
         </div>
     </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="form-group">
+        <label>Imagem</label>
+        <input type="file" id="imagem" (change)="onChange($event)" class="form-control" />
+      </div>
+    </div>
     <div class="col-lg-3 col-md-3" style="margin-top:33px;">
         <div class="form-group">
-          <button type="button" (click)="cadastrar()" class="btn btn-default" >
+          <button type="button" id="envia" (click)="cadastrar()" class="btn btn-default" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
           </button>
         </div>
@@ -68,4 +74,27 @@ Teste de input : {{testeInput}}
     </section>
   </div>
 </div>
+<script>
+    var form;
+  $('#imagem').change(function (event) {
+        form = new FormData();
+        form.append('fileUpload', event.target.files[0]); // para apenas 1 arquivo
+        //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
+    });
+
+  $('#envia').click(function () {
+    console.log(form);
+        //$.ajax({
+        //    url: 'URL SERVER', // Url do lado server que vai receber o arquivo
+        //    data: form,
+        //    processData: false,
+        //    contentType: false,
+        //    type: 'POST',
+        //    success: function (data) {
+        //        // utilizar o retorno
+        //    }
+        //});
+    });
+</script>
+
 
